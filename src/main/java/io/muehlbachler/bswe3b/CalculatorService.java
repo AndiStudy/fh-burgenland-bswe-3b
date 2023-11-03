@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CalculatorService {
-
-    final static int third_Constant3 = 1000;
     
     /**
      * Divides the given number a by b.
