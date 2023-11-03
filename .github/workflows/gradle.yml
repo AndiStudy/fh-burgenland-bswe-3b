@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
 
     needs:
-      - test
+      - check
 
     steps:
     - uses: actions/checkout@v3
@@ -35,7 +35,7 @@ jobs:
       uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
     - name: Build with Gradle
       run: gradle build
-  test:
+  check:
     runs-on: ubuntu-latest
     name: Tests
     steps:
@@ -47,4 +47,12 @@ jobs:
       - name: Run the Gradle package task
         uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
       - name: Test Start
-        run: gradle test
+        run: gradle check
+  hadolint:
+    runs-on: ubuntu-latest
+    name: hadolint
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
